@@ -1,4 +1,6 @@
-# homepage-timetable
+# timetable-page
+
+Timetable page generator
 
 ![screenshot](screenshot.png)
 
