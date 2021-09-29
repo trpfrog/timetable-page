@@ -1,0 +1,20 @@
+/*
+    color.css
+    You can customize the color of the page.
+ */
+
+:root {
+    --background-color: #fafff8;
+
+    --header-background-color: #66a928;
+    --header-font-color: white;
+
+    --table-cell-background-color: rgba(220, 255, 148, 0.67);
+    --table-header-background-color: rgba(199, 231, 133, 0.67);
+    --font-color: black;
+
+    --button-color: #77bd36;
+    --button-bottom-color: #558d21;
+    --button-hover-color: #90e200;
+    --button-text-color: white;
+}

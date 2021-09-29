@@ -1,0 +1,40 @@
+@import "../color.css";
+
+.grid {
+    background: var(--background-color);
+    margin: 0;
+    min-height: 100%;
+    display: grid;
+    grid-template-areas: "h" "m" "f";
+    grid-template-columns: 1fr;
+    transition: .5s;
+    grid-template-rows: 6em auto 6em;
+}
+
+.grid header{
+    grid-area: h;
+}
+
+body {
+    margin: 0;
+    background: var(--background-color);
+    text-align: center;
+}
+
+#main_wrapper {
+    max-width: 1000px;
+}
+
+main {
+    grid-area: m;
+    font-family: "Noto Sans JP";
+    padding: 1em;
+    margin: 2em;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0.5px;
+}
+
+.grid footer{
+    grid-area: f;
+}

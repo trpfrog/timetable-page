@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="robots" content="noindex">
+
+        <script type="text/javascript" src="./scripts/font_loader.js"></script>
+        <script type="text/javascript" src="./timetable.js"></script>
+        <script type="text/javascript" src="./scripts/timetable_builder.js"></script>
+
+        <style>
+            @import "./stylesheets/grid.css";
+            @import "./stylesheets/header.css";
+            @import "./stylesheets/footer.css";
+            @import "./stylesheets/linkbutton.css";
+            @import "./stylesheets/timetable_grid.css";
+        </style>
+
+        <title>Timetable</title>
+    </head>
+
+    <body>
+        <div class="grid">
+            <header>
+                <div id="header_wrapper">
+                </div>
+            </header>
+
+            <main>
+                <div id="main_wrapper">
+                    <style id="timetable-style" type="text/css"></style>
+                    <div id="timetable"></div>
+                </div>
+            </main>
+
+            <footer>
+                <p>
+                    Designed by <a href="http://trpfrog.net">TrpFrog</a>
+                </p>
+            </footer>
+        </div>
+    </body>
+
+</html>

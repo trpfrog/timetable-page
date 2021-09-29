@@ -1,0 +1,79 @@
+@import "../color.css";
+
+#main_wrapper {
+    max-width: 1300px !important;
+}
+
+#timetable {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows: 50px 150px 150px 150px 150px 150px;
+}
+
+.centering {
+    display: flex;
+    vertical-align:middle;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.timetable-element {
+    margin: 0.5em;
+    background-color: var(--table-cell-background-color);
+    border-radius: 22px;
+    text-align: center;
+    padding: 10px;
+}
+
+.timetable-heading {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+    margin: 0.5em;
+    background-color: var(--table-header-background-color);
+    border-radius: 22px;
+    text-align: center;
+    padding: 5px;
+}
+
+.timetable-element-wrapper {
+    display: block;
+}
+
+.lecture-name {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+}
+
+.timetable-button {
+    display: inline-block;
+    height: 27px;
+    width: 40px;
+    position: relative;
+    border-radius: 5px;
+
+    padding-top: 5px;
+    padding-bottom: 0px;
+    background: var(--button-color);
+    cursor: pointer;
+    border-bottom: solid 3px var(--button-bottom-color);
+    font-size: 1.2em;
+    font-family: 'Font Awesome 5 Free';
+    text-decoration: none;
+    color: var(--button-text-color);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.timetable-button:hover {
+    background-color: var(--button-hover-color);
+}
+.timetable-button:active{
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+}
+
+p {
+    margin: 10px 0;
+}
