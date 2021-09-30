@@ -1,0 +1,8 @@
+version: '3'
+services:
+  timetable:
+    image: nginx:latest
+    volumes:
+      - ./src:/usr/share/nginx/html
+    ports:
+      - "80:80"

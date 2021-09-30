@@ -78,6 +78,23 @@ $ docker run -d -p 80:80 --name timetable timetable
 
 Open `localhost` with your web browser, timetable will be shown.
 
+
+### docker-compose.yml
+
+**ADDED: 2021-09-30**
+
+Using docker-compose, you can host web server easier.
+In addition, changes you made in src folder will be reflected immediately. (Of course, `docker run -v ...` can do same but this is easier.)
+
+```sh
+# Start
+$ docker-compose up
+# Stop
+$ docker-compose stop
+```
+
+
+
 ## Caution
 
 If you put **important information** (such as video meeting URL) in timetable.js, you **MUST NEVER** publish that information on the Internet!
