@@ -1,7 +1,8 @@
 @import "../color.css";
 
 #main_wrapper {
-    max-width: 1300px !important;
+    max-width: 1300px;
+    display: inline-block;
 }
 
 #timetable {

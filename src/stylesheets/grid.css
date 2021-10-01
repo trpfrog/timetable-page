@@ -21,17 +21,13 @@ body {
     text-align: center;
 }
 
-#main_wrapper {
-    max-width: 1000px;
-}
-
 main {
     grid-area: m;
     font-family: "Noto Sans JP";
     padding: 1em;
     margin: 2em;
     font-weight: 500;
-    text-align: left;
+    text-align: center;
     letter-spacing: 0.5px;
 }
 
