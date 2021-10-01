@@ -8,7 +8,7 @@
 #timetable {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
-    grid-template-rows: 50px 150px 150px 150px 150px 150px;
+    grid-template-rows: 50px auto auto auto auto auto;
 }
 
 .centering {
