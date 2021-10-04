@@ -37,12 +37,12 @@ jobs:
           context: ./
           platforms: linux/amd64
           push: false
-          tags: ghcr.io/TrpFrog/timetable:latest
+          tags: ghcr.io/trpfrog/timetable:latest
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'ghcr.io/TrpFrog/timetable:latest'
+          image-ref: 'ghcr.io/trpfrog/timetable:latest'
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
@@ -55,4 +55,4 @@ jobs:
           context: ./
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/TrpFrog/timetable:latest
+          tags: ghcr.io/trpfrog/timetable:latest
