@@ -4,6 +4,49 @@ Timetable page generator
 
 ![screenshot](screenshot.png)
 
+
+
+## Installation
+
+### Method A: Cloning this repository
+
+Execute
+
+```sh
+git clone https://github.com/TrpFrog/timetable-page.git
+```
+
+**or** download the zip file from [this page](https://github.com/TrpFrog/timetable-page/archive/refs/heads/main.zip) and unarchive it.
+
+Then, read the section **Getting Started**
+
+### Method B: Using Docker
+
+Execute these commands.
+
+```sh
+# Pull the docker image
+docker pull ghcr.io/trpfrog/timetable:latest
+
+# Create project folder
+mkdir timetable
+cd timetable
+touch timetable.js
+
+# Run
+docker run -d -p 80:80 \
+    -v $PWD/timetable.js:/usr/share/nginx/html/timetable.js \
+    --name timetable \
+    ghcr.io/trpfrog/timetable
+
+# Copy the timetable template
+docker cp timetable:/usr/share/nginx/html/timetable-example.js ./timetable.js                            
+```
+
+Then, access `localhost`, you can see your timetable.
+
+
+
 ## Getting Started
 
 Enter your timetable information into timetable.js, the information will be automatically reflected in index.html!
@@ -65,21 +108,7 @@ Now that timetable.js is complete, let's open index.html. **You can see the time
 You can customize the appearance of the timetable using `color.css`.
 
 
-### Dockerfile (Optional)
-
-You can host web server using nginx with docker.
-
-```sh
-# Build Dockerfile
-$ docker build -t timetable .
-# Start
-$ docker run -d -p 80:80 --name timetable timetable
-```
-
-Open `localhost` with your web browser, timetable will be shown.
-
-
-### docker-compose.yml
+### docker-compose.yml　(Optional)
 
 **ADDED: 2021-09-30**
 
