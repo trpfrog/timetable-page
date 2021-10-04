@@ -1,0 +1,42 @@
+@media screen and (max-width:900px) {
+    #main_wrapper {
+        margin: 5px;
+        width: 95%;
+    }
+    
+    #timetable {
+        display: block;
+    }
+
+    .timetable-lecture-shell + .timetable-heading {
+        margin-top: 30px;
+    }
+
+    .timetable-lecture-shell {
+        grid-template: "period content";
+        grid-template-columns: 90px auto;
+    }
+
+    .timetable-element {
+        grid-area: content;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .timetable-period-mobile-shell {
+        display: grid;
+        grid-area: period;
+    }
+
+    .timetable-period-mobile {
+        margin-right: 0;
+    }
+
+    .timetable-period-mobile + .timetable-period-mobile {
+        margin-top: 0;
+    }
+
+    .timetable-period-pc {
+        display: none;
+    }
+}
