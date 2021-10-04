@@ -1,39 +1,29 @@
 @import "../color.css";
 
-.linkButton{
+.timetable-button {
     display: inline-block;
-
-    margin-bottom: 8px;
-    margin-right: 2em;
-    line-height: 1.5;
-    width:160px;
-    height: 14px;
-    
-    text-align:center;
-    padding:8px 0 15px;
-    background: var(--button-color);
-    
-    border: 0;
+    height: 27px;
+    width: 40px;
+    position: relative;
     border-radius: 5px;
-    
+
+    padding-top: 5px;
+    padding-bottom: 0px;
+    background: var(--button-color);
+    cursor: pointer;
+    border-bottom: solid 3px var(--button-bottom-color);
+    font-size: 1.2em;
+    font-family: 'Font Awesome 5 Free';
+    text-decoration: none;
     color: var(--button-text-color);
     text-shadow: 0 1px 0 rgba(0,0,0,0.2);
-    border-bottom: solid 4px var(--button-bottom-color);
-    font-weight: bold;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    text-decoration: none;
-
-    user-select: none;
-    cursor: pointer;
-    vertical-align: middle;
 }
 
-.linkButton:hover{
-    background: var(--buton-hover-color);
+.timetable-button:hover {
+    background-color: var(--button-hover-color);
 }
-
-.linkButton:active{
-    -webkit-transform: translateY(1px);
+.timetable-button:active{
+    -webkit-transform: translateY(2px);
     transform: translateY(2px);
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
     border-bottom: none;
