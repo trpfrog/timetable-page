@@ -1,11 +1,9 @@
 footer{
-    justify-content: space-between;
-    width: 100%;
-    height: 100px;
+    color: black;
 }
 
-footer {
-    color: black;
+footer p {
+    padding: 1em;
 }
 
 footer a {
