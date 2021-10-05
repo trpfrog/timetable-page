@@ -1,0 +1,25 @@
+/*
+    marron-theme.css
+    Designed by TrpFrog
+ */
+
+:root {
+    --background-color: #fff2de;
+
+    --header-background-color: #a97c28;
+    --header-font-color: white;
+
+    --table-cell-background-color: rgba(255, 218, 148, 0.67);
+    --table-header-background-color: rgba(231, 197, 133, 0.67);
+    --font-color: black;
+
+    --button-color: #b99520;
+    --button-bottom-color: #8d6221;
+    --button-hover-color: #e29a00;
+    --button-text-color: white;
+
+    --pop-up-color: #fff2de;
+    --pop-up-font-color: #703b00;
+
+    --designer-name: 'Designed by TrpFrog';
+}

@@ -1,0 +1,25 @@
+/*
+    yellow-theme.css
+    Designed by TrpFrog
+ */
+
+:root {
+    --background-color: #fffff3;
+
+    --header-background-color: #ffdd00;
+    --header-font-color: #4f3f00;
+
+    --table-cell-background-color: rgba(255, 241, 83, 0.67);
+    --table-header-background-color: rgba(255, 237, 44, 0.67);
+    --font-color: #362d00;
+
+    --button-color: #eab01c;
+    --button-bottom-color: #8d7721;
+    --button-hover-color: #ffd200;
+    --button-text-color: white;
+
+    --pop-up-color: var(--background-color);
+    --pop-up-font-color: var(--font-color);
+
+    --designer-name: 'Designed by TrpFrog';
+}
