@@ -1,11 +1,11 @@
 let mouseX = 0, mouseY = 0;
 
-window.onload=function(){
+window.addEventListener('load', function(){
     document.body.addEventListener("mousemove", function(e){
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
-}
+});
 
 function noScroll(event) {
     event.preventDefault();
