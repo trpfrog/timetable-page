@@ -28,7 +28,7 @@ Execute these commands.
 # Pull the docker image
 docker pull ghcr.io/trpfrog/timetable:latest
 
-# Create project folder
+# Create a project folder
 mkdir timetable
 cd timetable
 touch timetable.js
@@ -133,6 +133,8 @@ I will not be held responsible for any damage caused by the disclosure of links 
 
 
 ## License
+
+This software is released under the MIT License.
 
 These fonts used in this repository are licensed under [Open Font License](https://scripts.sil.org/OFL).
 
