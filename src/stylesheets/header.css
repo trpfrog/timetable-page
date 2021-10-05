@@ -1,5 +1,3 @@
-@import "../color.css";
-
 header{
     position: fixed;
     background: var(--header-background-color);

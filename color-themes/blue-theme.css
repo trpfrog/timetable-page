@@ -1,0 +1,25 @@
+/*
+    blue-theme.css
+    Designed by TrpFrog
+ */
+
+:root {
+    --background-color: #e0f1fd;
+
+    --header-background-color: #0497c4;
+    --header-font-color: white;
+
+    --table-cell-background-color: rgba(160, 233, 255, 0.67);
+    --table-header-background-color: rgba(117, 220, 243, 0.67);
+    --font-color: black;
+
+    --button-color: #3694bd;
+    --button-bottom-color: #217d8d;
+    --button-hover-color: #00ade2;
+    --button-text-color: white;
+
+    --pop-up-color: var(--background-color);
+    --pop-up-font-color: #217d8d;
+
+    --designer-name: 'Designed by TrpFrog'
+}

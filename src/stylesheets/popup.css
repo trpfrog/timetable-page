@@ -1,0 +1,44 @@
+#gray_cover {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: black;
+    opacity: 0.5;
+}
+
+#idpass-balloon {
+    position: absolute;
+    z-index: 160;
+    background-color: var(--pop-up-color, white);
+    border-radius: 5px;
+    width: 200px;
+    height: 110px;
+}
+
+#idpass-balloon p {
+    line-height: 1;
+    color: var(--pop-up-font-color, black);
+    margin-bottom: 5px;
+}
+
+#idpass-balloon:after{
+    border: solid transparent;
+    content:'';
+    height:0;
+    width:0;
+    pointer-events:none;
+    position:absolute;
+    border-color: rgba(90, 230, 40, 0);
+    border-top-width:15px;
+    border-bottom-width:15px;
+    border-left-width:10px;
+    border-right-width:10px;
+    margin-left: -10px;
+    border-top-color: var(--pop-up-color, white);
+    top:100%;
+    left:80%;
+}

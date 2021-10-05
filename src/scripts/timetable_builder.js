@@ -21,18 +21,42 @@ function button_centering(html) {
 }
 
 function classroom_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fab fa-google"></i></a>`)
 }
 
 function home_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-home"></i></a>`)
 }
 
+function link_btn(url) {
+    if(url === '' || url === undefined) return '';
+    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-paperclip"></i></a>`)
+}
+
+function webclass_btn(url) {
+    if(url === '' || url === undefined) return '';
+    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-school"></i></a>`)
+}
+
 function zoom_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-video"></i></a>`)
+}
+
+function zoomIdPassButton(id, pass) {
+    if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
+    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+                        class="timetable-button"><i class="fas fa-video"></i></span>`;
+    return button_centering(html);
+}
+
+function idPassButton(id, pass) {
+    if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
+    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+                        class="timetable-button"><i class="fas fa-id-card"></i></span>`;
+    return button_centering(html);
 }
 
 function lecture_data_to_html(lecture) {
@@ -60,8 +84,12 @@ function lecture_data_to_html(lecture) {
                     <div style="display: inline-block;">
                         <p style="margin: 0;">
                             ${classroom_btn(lecture.google_classroom)}
+                            ${webclass_btn(lecture.webclass)}
                             ${home_btn(lecture.link)}
+                            ${link_btn(lecture.link2)}
                             ${zoom_btn(lecture.zoom)}
+                            ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
+                            ${idPassButton(lecture.id, lecture.password)}
                         </p>
                     </div>
                 </div>
@@ -94,6 +122,10 @@ function init_timetable() {
     const lects = get_divided_timetable();
     const table = document.getElementById('timetable');
     document.getElementById('header_wrapper').innerHTML = '<h1>' + page_title + '</h1>';
+
+    const theme = (typeof color_theme === 'undefined' || color_theme === '') ? 'color.css' : color_theme;
+    const themeCode = `@import "${theme}";`
+    document.getElementsByTagName('style')[0].insertAdjacentHTML('afterbegin', themeCode);
 
     for (let i in day_of_weeks) {
         const html = `<div class="timetable-heading centering" style="grid-column: ${2 + parseInt(i)}; grid-row: 1">    
