@@ -30,6 +30,16 @@ function home_btn(url) {
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-home"></i></a>`)
 }
 
+function link_btn(url) {
+    if(url === '' || url === undefined) return '';
+    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-paperclip"></i></a>`)
+}
+
+function webclass_btn(url) {
+    if(url === '' || url === undefined) return '';
+    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-school"></i></a>`)
+}
+
 function zoom_btn(url) {
     if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-video"></i></a>`)
@@ -39,6 +49,13 @@ function zoomIdPassButton(id, pass) {
     if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
     const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
                         class="timetable-button"><i class="fas fa-video"></i></span>`;
+    return button_centering(html);
+}
+
+function idPassButton(id, pass) {
+    if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
+    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+                        class="timetable-button"><i class="fas fa-id-card"></i></span>`;
     return button_centering(html);
 }
 
@@ -67,9 +84,12 @@ function lecture_data_to_html(lecture) {
                     <div style="display: inline-block;">
                         <p style="margin: 0;">
                             ${classroom_btn(lecture.google_classroom)}
+                            ${webclass_btn(lecture.webclass)}
                             ${home_btn(lecture.link)}
+                            ${link_btn(lecture.link2)}
                             ${zoom_btn(lecture.zoom)}
                             ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
+                            ${idPassButton(lecture.id, lecture.password)}
                         </p>
                     </div>
                 </div>
