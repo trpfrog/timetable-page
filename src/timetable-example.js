@@ -47,7 +47,7 @@ const timetable = [
         "lect_length": 1,
         "type": "Realtime",
         "webclass": "https://trpfrog.net",
-        "link1": "https://trpfrog.net",
+        "link": "https://trpfrog.net",
         // You can use CSS style color including color code (#90e200) and rgba function.
         "color": "skyblue"
     },
