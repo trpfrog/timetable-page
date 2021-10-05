@@ -11,6 +11,7 @@
 const page_title = 'Timetable';
 const time = ['9:00 - 10:30', '10:40 - 12:10', '13:00 - 14:30', '14:40 - 16:10', '16:15 - 17:45'];
 const day_of_weeks = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const color_theme = './default-color.css'; // path to the color theme
 
 const timetable = [
     {

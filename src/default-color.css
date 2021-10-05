@@ -1,5 +1,5 @@
 /*
-    color.css
+    default-color.css
     You can customize the color of the page.
  */
 
@@ -17,4 +17,9 @@
     --button-bottom-color: #558d21;
     --button-hover-color: #90e200;
     --button-text-color: white;
+
+    --pop-up-color: var(--background-color);
+    --pop-up-font-color: #558d21;
+
+    --designer-name: 'Designed by TrpFrog';
 }
