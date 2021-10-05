@@ -21,17 +21,17 @@ function button_centering(html) {
 }
 
 function classroom_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fab fa-google"></i></a>`)
 }
 
 function home_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-home"></i></a>`)
 }
 
 function zoom_btn(url) {
-    if(url === '') return '';
+    if(url === '' || url === undefined) return '';
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-video"></i></a>`)
 }
 
