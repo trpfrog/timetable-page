@@ -13,15 +13,15 @@
 #idpass-balloon {
     position: absolute;
     z-index: 160;
-    background-color: white;
+    background-color: var(--pop-up-color, white);
     border-radius: 5px;
     width: 200px;
     height: 110px;
-    opacity: 0.9;
 }
 
 #idpass-balloon p {
     line-height: 1;
+    color: var(--pop-up-font-color, black);
     margin-bottom: 5px;
 }
 
@@ -38,7 +38,7 @@
     border-left-width:10px;
     border-right-width:10px;
     margin-left: -10px;
-    border-top-color: white;
+    border-top-color: var(--pop-up-color, white);
     top:100%;
     left:80%;
 }

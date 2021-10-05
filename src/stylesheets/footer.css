@@ -7,5 +7,10 @@ footer p {
 }
 
 footer a {
-    color: black;
+    color: var(--font-color);
+}
+
+footer #designer-name:after {
+    color: var(--font-color);
+    content: var(--designer-name, '');
 }
