@@ -61,10 +61,14 @@ Enter your timetable information into timetable.js, the information will be auto
 const page_title = 'Timetable';
 const time = ['9:00 - 10:30', '10:40 - 12:10', '13:00 - 14:30', '14:40 - 16:10', '16:15 - 17:45'];
 const day_of_weeks = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const color_theme = '../color-themes/green-theme.css';
 ```
 - **page_title**: Page title displayed on the header
 - **time**: Time when the n-th period lecture will be held
 - **day_of_week**: Name of the day of the week to be displayed
+- **color_theme**: Path to the color theme (v2.1 - )
+    - You can use prepared theme in the *color-themes* folder.
+    - Also you can make your own color theme and use it.
 
 ```javascript
 const timetable = [
@@ -76,39 +80,65 @@ const timetable = [
         "lect_length": 1,
         "type": "Realtime",
         "google_classroom": "https://trpfrog.net",
+        "webclass": "https://trpfrog.net",
         "link": "https://trpfrog.net",
+        "link2": "https://trpfrog.net",
         "zoom": "https://trpfrog.net",
+        "zoom_id": "0123456789",
+        "zoom_password": "9876543210",
+        "id": "userid",
+        "password": "password",
         "color": "#90e200",
     },
     // the same continues below...
 ]
 ```
 - **name**: Name of lecture
+
 - **teacher**: Name of teacher
+
 - **day_of_week**: Day of week this lecture held
     - You *must* use `mon`, `tue`, `wed`, `thu`, or `fri`
+    - *REQUIRED PROPERTY*
+    
 - **time**: n-th period of this lecture
+    - *REQUIRED PROPERTY*
+    
 - **lect_length**: The length of the lecture
+    - *REQUIRED PROPERTY*
+    
 - **type**: Form of lecture
     - Example: realtime, on-demand, face-to-face
+    
 - **google_classroom**: Google classroom URL
-    - If left blank (`""`), it will be ignored.
+
+- **webclass**: Webclass URL
+
 - **link**: Homepage URL
-    - If left blank, it will be ignored.
+
+- **link2**: Another homepage URL
+
 - **zoom**: Video meetings URL
-    - If left blank, it will be ignored.
+
+- **zoom_id**: ID of a video meeting room.
+    - It is convenient if there are no meeting room URLs.
+    
+- **zoom_password**: Password of a video meeting room.
+
+-   **id**: Some kind of an user ID
+
+-   **password**: Some kind of a password
+
 - **color**: Background color of this lecture
+    
     - You can use CSS style color including color code (#90e200) and rgba function.
     - If left blank, used default color
+    
+    
 
 Now that timetable.js is complete, let's open index.html. **You can see the timetable generated.** It is convenient to set this as your browser's home page.
 
-### color.css (Optional)
-
-You can customize the appearance of the timetable using `color.css`.
-
-
-### docker-compose.yml　(Optional)
+### docker-compose.yml (Optional)
 
 **ADDED: 2021-09-30**
 
