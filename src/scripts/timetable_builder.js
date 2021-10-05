@@ -123,7 +123,7 @@ function init_timetable() {
     const table = document.getElementById('timetable');
     document.getElementById('header_wrapper').innerHTML = '<h1>' + page_title + '</h1>';
 
-    const theme = (typeof color_theme === 'undefined' || color_theme === '') ? 'default-color.css' : color_theme;
+    const theme = (typeof color_theme === 'undefined' || color_theme === '') ? 'color.css' : color_theme;
     const themeCode = `@import "${theme}";`
     document.getElementsByTagName('style')[0].insertAdjacentHTML('afterbegin', themeCode);
 
