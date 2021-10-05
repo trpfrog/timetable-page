@@ -35,6 +35,13 @@ function zoom_btn(url) {
     return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-video"></i></a>`)
 }
 
+function zoomIdPassButton(id, pass) {
+    if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
+    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+                        class="timetable-button"><i class="fas fa-video"></i></span>`;
+    return button_centering(html);
+}
+
 function lecture_data_to_html(lecture) {
     let needSlash = lecture.teacher != '' && lecture.type != '';
     let windowColor = lecture.color == ''  ? '' : `background-color: ${lecture.color};`;
@@ -62,6 +69,7 @@ function lecture_data_to_html(lecture) {
                             ${classroom_btn(lecture.google_classroom)}
                             ${home_btn(lecture.link)}
                             ${zoom_btn(lecture.zoom)}
+                            ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
                         </p>
                     </div>
                 </div>
