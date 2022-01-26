@@ -70,14 +70,12 @@ function lectureDataToHTML(lecture) {
                     <p>
                         ${lecture.teacher}${needsSlash ? ' / ' : ''}${lecture.type}
                     </p>
-                    <div style="display: inline-block;">
-                        <p style="margin: 0;">
-                            ${Object.keys(SPECIFIC_FONT_AWESOME_CLASSES).map(e =>
-                                buttonComponent(lecture[e], e)
-                            ).join('\n')}
-                            ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
-                            ${idPassButton(lecture.id, lecture.password)}
-                        </p>
+                    <div class="timetable-button-area">
+                        ${Object.keys(SPECIFIC_FONT_AWESOME_CLASSES).map(e =>
+                            buttonComponent(lecture[e], e)
+                        ).join('\n')}
+                        ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
+                        ${idPassButton(lecture.id, lecture.password)}
                     </div>
                 </div>
             </div>
