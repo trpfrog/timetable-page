@@ -123,33 +123,35 @@ function initTimetable() {
 
     const tableElement = document.getElementById('timetable');
 
-    for (let i in day_of_weeks) {
-        const className = 'timetable-heading centering';
-        const style = `grid-column: ${2 + parseInt(i)}; grid-row: 1`;
-        const html = `
-            <div class="${className}" style="${style}">    
+    const html = `
+        ${day_of_weeks.map((e, i) => (`
+            <!-- day of weeks --->
+            <div 
+                class="timetable-heading centering" 
+                style="grid-column: ${2 + i}; grid-row: 1"
+            >
                 <div class="timetable-element-wrapper">
-                    <p>${day_of_weeks[i]}</p>
+                    <p>${e}</p>
                 </div>
-            </div>`;
-        tableElement.insertAdjacentHTML('beforeend', html);
-
-        for(const lecture of lecturesInDay[i]) {
-            tableElement.insertAdjacentHTML('beforeend', lectureDataToHTML(lecture));
-        }
-    }
-
-    for(const i in time) {
-        const className = 'timetable-heading timetable-period-pc centering';
-        const style = `grid-column: 1; grid-row: ${2 + parseInt(i)}`;
-        const html = `
-            <div class="${className}" style="${style}">
+            </div>
+            
+            <!-- lecture data --->
+            ${lecturesInDay[i].map(lectureDataToHTML).join('')}
+        `)).join('')}
+        
+        <!-- time notation --->
+        ${time.map((e, i) => (`
+            <div 
+                class="timetable-heading timetable-period-pc centering" 
+                style="grid-column: 1; grid-row: ${2 + i}"
+            >
                 <div class="timetable-element-wrapper">
-                    <p>${time[i]}</p>
+                    <p>${e}</p>
                 </div>
-            </div>`;
-        tableElement.insertAdjacentHTML('beforeend', html);
-    }
+            </div>
+        `)).join('')}
+    `;
+    tableElement.insertAdjacentHTML('beforeend', html);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
