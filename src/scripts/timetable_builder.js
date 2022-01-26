@@ -7,14 +7,7 @@ function dayOfWeekToCSSColumn(dayOfWeek) {
         case 'fri': return 6;
     }
     return 1;
-};
-
-function lectureDataToCSS(lecture) {
-    return `
-        grid-column: ${dayOfWeekToCSSColumn(lecture.day_of_week)};
-        grid-row: ${1 + lecture.period} / ${1 + lecture.period + lecture.lect_length}; `;
 }
-
 
 const SPECIFIC_FONT_AWESOME_CLASSES = {
     google_classroom: 'fab fa-google',
@@ -45,27 +38,27 @@ function idPassButton(id, pass) {
 }
 
 function lectureDataToHTML(lecture) {
-    let needSlash = lecture.teacher !== '' && lecture.type !== '';
-    let windowColor = lecture.color === ''  ? '' : `background-color: ${lecture.color};`;
+    const needsSlash = lecture.teacher !== '' && lecture.type !== '';
+    const windowColor = lecture.color === ''  ? '' : `background-color: ${lecture.color};`;
 
     return `
-        <div class="timetable-lecture-shell" style="${lectureDataToCSS(lecture)}">
+        <div 
+            class="timetable-lecture-shell" 
+            style="
+                grid-column: ${dayOfWeekToCSSColumn(lecture.day_of_week)};
+                grid-row: ${1 + lecture.period} / ${1 + lecture.period + lecture.lect_length};
+            "
+        >
         
             <!-- Time notation for smartphones --->
             <div class="timetable-period-mobile-shell">
-                ${(() => {
-                    // Generate time notations for the class length.
-                    let smartphoneTimeNotation = '';
-                    for(let i = 0; i < lecture.lect_length; i++) {
-                        smartphoneTimeNotation += `
-                        <div class="timetable-heading timetable-period-mobile centering">
-                            <div class="timetable-element-wrapper">
-                                <p>${time[lecture.period - 1 + i]}</p>
-                            </div>
-                        </div>`;
-                    }
-                    return smartphoneTimeNotation;
-                })()}
+                ${[...Array(lecture.lect_length).keys()].map(i => (`
+                    <div class="timetable-heading timetable-period-mobile centering">
+                        <div class="timetable-element-wrapper">
+                            <p>${time[lecture.period - 1 + i]}</p>
+                        </div>
+                    </div>
+                `)).join('')}
             </div>
             
             <!-- Lecture block --->            
@@ -75,7 +68,7 @@ function lectureDataToHTML(lecture) {
                         ${lecture.name}
                     </p>
                     <p>
-                        ${lecture.teacher}${needSlash ? ' / ' : ''}${lecture.type}
+                        ${lecture.teacher}${needsSlash ? ' / ' : ''}${lecture.type}
                     </p>
                     <div style="display: inline-block;">
                         <p style="margin: 0;">
