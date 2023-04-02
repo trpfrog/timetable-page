@@ -5,6 +5,7 @@ function dayOfWeekToCSSColumn(dayOfWeek) {
         case 'wed': return 4;
         case 'thu': return 5;
         case 'fri': return 6;
+        case 'sat': return 7;
     }
     return 1;
 }
@@ -74,6 +75,12 @@ function lectureDataToHTML(lecture) {
                         ${Object.keys(SPECIFIC_FONT_AWESOME_CLASSES).map(e =>
                             buttonComponent(lecture[e], e)
                         ).join('\n')}
+                        ${!lecture.custom ? '' : lecture.custom.map(customButton => (
+                            buttonComponent(
+                                customButton.url,
+                                customButton.fa_class ? '' : customButton.fa_class                                
+                            )
+                        ))}
                         ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
                         ${idPassButton(lecture.id, lecture.password)}
                     </div>

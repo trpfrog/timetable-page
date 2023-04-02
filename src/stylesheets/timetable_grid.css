@@ -8,8 +8,9 @@
 
 #timetable {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
-    grid-template-rows: 50px auto auto auto auto auto;
+    --number-of-days: 6;
+    grid-template-columns: 1fr repeat(var(--number-of-days), 2fr);
+    grid-template-rows: 50px repeat(var(--number-of-days), 2fr);
 }
 
 .centering {
