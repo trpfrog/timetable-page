@@ -66,7 +66,7 @@ function lectureDataToHTML(lecture) {
             <div class="timetable-element centering" style="${windowColor}">
                 <div class="timetable-element-wrapper">
                     <p class="lecture-name">
-                        ${lecture.name}
+                        <budoux-ja>${lecture.name}</budoux-ja>
                     </p>
                     <p>
                         ${lecture.teacher}${needsSlash ? ' / ' : ''}${lecture.type}
