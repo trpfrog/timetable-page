@@ -1,3 +1,10 @@
+.timetable-button-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.3em;
+}
+
 .timetable-button {
     display: inline-block;
     height: 27px;

@@ -1,154 +1,191 @@
-function day_of_week_to_css_column(day_of_week) {
-    switch (day_of_week) {
+function dayOfWeekToCSSColumn(dayOfWeek) {
+    switch (dayOfWeek) {
         case 'mon': return 2;
         case 'tue': return 3;
         case 'wed': return 4;
         case 'thu': return 5;
         case 'fri': return 6;
+        case 'sat': return 7;
     }
     return 1;
-};
-
-function lecture_data_to_css(lecture) {
-    return `
-        grid-column: ${day_of_week_to_css_column(lecture.day_of_week)};
-        grid-row: ${1 + lecture.period} / ${1 + lecture.period + lecture.lect_length}; `;
 }
 
-function button_centering(html) {
-    // do nothing
-    return html;
+const SPECIFIC_FONT_AWESOME_CLASSES = {
+    google_classroom: 'fab fa-google',
+    webclass: 'fas fa-school',
+    link: 'fas fa-home',
+    link2: 'fas fa-paperclip',
+    zoom: 'fas fa-video',
 }
 
-function classroom_btn(url) {
+function buttonComponent(url, fontAwesomeClass) {
     if(url === '' || url === undefined) return '';
-    return button_centering(`<a href="${url}" class="timetable-button"><i class="fab fa-google"></i></a>`)
-}
-
-function home_btn(url) {
-    if(url === '' || url === undefined) return '';
-    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-home"></i></a>`)
-}
-
-function link_btn(url) {
-    if(url === '' || url === undefined) return '';
-    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-paperclip"></i></a>`)
-}
-
-function webclass_btn(url) {
-    if(url === '' || url === undefined) return '';
-    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-school"></i></a>`)
-}
-
-function zoom_btn(url) {
-    if(url === '' || url === undefined) return '';
-    return button_centering(`<a href="${url}" class="timetable-button"><i class="fas fa-video"></i></a>`)
+    if(SPECIFIC_FONT_AWESOME_CLASSES[fontAwesomeClass] !== undefined) {
+        fontAwesomeClass = SPECIFIC_FONT_AWESOME_CLASSES[fontAwesomeClass];
+    }
+    return `<a href="${url}" class="timetable-button"><i class="${fontAwesomeClass}"></i></a>`
 }
 
 function zoomIdPassButton(id, pass) {
     if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
-    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+    return `<span onclick="idPassPopup('${id}', '${pass}')" 
                         class="timetable-button"><i class="fas fa-video"></i></span>`;
-    return button_centering(html);
 }
 
 function idPassButton(id, pass) {
     if((id === '' || id === undefined) && (pass === '' || pass === undefined)) return '';
-    const html = `<span onclick="idPassPopup('${id}', '${pass}')" 
+    return `<span onclick="idPassPopup('${id}', '${pass}')" 
                         class="timetable-button"><i class="fas fa-id-card"></i></span>`;
-    return button_centering(html);
 }
 
-function lecture_data_to_html(lecture) {
-    let needSlash = lecture.teacher != '' && lecture.type != '';
-    let windowColor = lecture.color == ''  ? '' : `background-color: ${lecture.color};`;
-    
-    html = `<div class="timetable-lecture-shell" style="${lecture_data_to_css(lecture)}">
-        <div class="timetable-period-mobile-shell">`;
-    
-    for(let i = 0; i < lecture.lect_length; i++) {
-        html += `
-            <div class="timetable-heading timetable-period-mobile centering">
-                <div class="timetable-element-wrapper">
-                    <p>${time[lecture.period - 1 + i]}</p>
-                </div>
-            </div>`;
-    }
+function lectureDataToHTML(lecture) {
+    const needsSlash = lecture.teacher !== '' && lecture.type !== '';
+    const windowColor = lecture.color === ''  ? '' : `background-color: ${lecture.color};`;
 
-    html += `
-        </div>
+    return `
+        <div 
+            class="timetable-lecture-shell" 
+            style="
+                grid-column: ${dayOfWeekToCSSColumn(lecture.day_of_week)};
+                grid-row: ${1 + lecture.period} / ${1 + lecture.period + lecture.lect_length};
+            "
+        >
+        
+            <!-- Time notation for smartphones --->
+            <div class="timetable-period-mobile-shell">
+                ${[...Array(lecture.lect_length).keys()].map(i => (`
+                    <div class="timetable-heading timetable-period-mobile centering">
+                        <div class="timetable-element-wrapper">
+                            <p>${time[lecture.period - 1 + i]}</p>
+                        </div>
+                    </div>
+                `)).join('')}
+            </div>
+            
+            <!-- Lecture block --->            
             <div class="timetable-element centering" style="${windowColor}">
                 <div class="timetable-element-wrapper">
-                    <p class="lecture-name">${lecture.name}</p>
-                    <p>${lecture.teacher}${needSlash ? ' / ' : ''}${lecture.type}</p>
-                    <div style="display: inline-block;">
-                        <p style="margin: 0;">
-                            ${classroom_btn(lecture.google_classroom)}
-                            ${webclass_btn(lecture.webclass)}
-                            ${home_btn(lecture.link)}
-                            ${link_btn(lecture.link2)}
-                            ${zoom_btn(lecture.zoom)}
-                            ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
-                            ${idPassButton(lecture.id, lecture.password)}
-                        </p>
+                    <p class="lecture-name">
+                        <budoux-ja>${lecture.name}</budoux-ja>
+                    </p>
+                    <p>
+                        ${lecture.teacher}${needsSlash ? ' / ' : ''}${lecture.type}
+                    </p>
+                    <div class="timetable-button-area">
+                        ${Object.keys(SPECIFIC_FONT_AWESOME_CLASSES).map(e =>
+                            buttonComponent(lecture[e], e)
+                        ).join('\n')}
+                        ${!lecture.custom ? '' : lecture.custom.map(customButton => (
+                            buttonComponent(
+                                customButton.url,
+                                customButton.fa_class ? '' : customButton.fa_class                                
+                            )
+                        ))}
+                        ${zoomIdPassButton(lecture.zoom_id, lecture.zoom_password)}
+                        ${idPassButton(lecture.id, lecture.password)}
                     </div>
                 </div>
             </div>
-        </div>`;
-    
-    html += '</div></div>'
-
-    return html;
+            
+        </div>
+    `;
 }
 
-function get_divided_timetable() {
-    let lects_each_day = {};
-    for (let i in day_of_weeks) {
-        lects_each_day[i] = [];
+function decomposeTimetable(timetable) {
+  return timetable.flatMap(lect => {
+    if (Array.isArray(lect.period)) {
+      if (!Array.isArray(lect.lect_length)) {
+        lect.lect_length = [lect.lect_length];
+      }
+      if (!Array.isArray(lect.day_of_week)) {
+        lect.day_of_week = [lect.day_of_week];
+      }
+      let ret = [];
+      for (let i = 0; i < lect.period.length; i++) {
+        ret.push({
+          ...lect,
+          day_of_week: lect.day_of_week[i % lect.day_of_week.length],
+          period: lect.period[i],
+          lect_length: lect.lect_length[i % lect.lect_length.length],
+        });
+      }
+      return ret;
+    } else {
+      return [lect];
     }
-    for (const lect of timetable) {
-        lects_each_day[day_of_week_to_css_column(lect.day_of_week) - 2].push(lect);
-    }
-    var f = function (a, b) {
-        return a.period - b.period;
-    };
-    for (let i in lects_each_day) {
-        lects_each_day[i].sort(f);
-    }
-    return lects_each_day;
+  });
 }
 
-function init_timetable() {
-    const lects = get_divided_timetable();
-    const table = document.getElementById('timetable');
-    document.getElementById('header_wrapper').innerHTML = '<h1>' + page_title + '</h1>';
+function getDividedTimetable() {
+    const alignedTimetable = day_of_weeks.map(() => []);
+    const decomposedTimetable = decomposeTimetable(timetable);
+    console.log(decomposedTimetable);
 
-    const theme = (typeof color_theme === 'undefined' || color_theme === '') ? 'color.css' : color_theme;
+    for (const lect of decomposedTimetable) {
+      if (dayOfWeekToCSSColumn(lect.day_of_week) <= 1) {
+        console.log(`Invalid day of week: ${lect.day_of_week} (lecture: ${lect.name})`)
+      }
+    }
+    decomposedTimetable
+        .filter(lect => dayOfWeekToCSSColumn(lect.day_of_week) > 1)
+        .map(lect => ({ i: dayOfWeekToCSSColumn(lect.day_of_week) - 2, lect }))
+        .forEach(({i, lect}) => alignedTimetable[i].push(lect))
+
+    for (let i in alignedTimetable) {
+        alignedTimetable[i].sort((a, b) => a.period - b.period);
+    }
+    return alignedTimetable;
+}
+
+function setPageTitle(pageTitle) {
+    document.getElementById('header_wrapper').innerHTML = '<h1>' + pageTitle + '</h1>';
+}
+
+function setPageTheme(colorTheme) {
+    const theme = (typeof colorTheme === 'undefined' || colorTheme === '') ? 'color.css' : colorTheme;
     const themeCode = `@import "${theme}";`
     document.getElementsByTagName('style')[0].insertAdjacentHTML('afterbegin', themeCode);
+}
 
-    for (let i in day_of_weeks) {
-        const html = `<div class="timetable-heading centering" style="grid-column: ${2 + parseInt(i)}; grid-row: 1">    
-            <div class="timetable-element-wrapper">
-                <p>${day_of_weeks[i]}</p>
-            </div>
-        </div>`;
-        table.insertAdjacentHTML('beforeend', html);
-        for(const lecture of lects[i]) {
-            table.insertAdjacentHTML('beforeend', lecture_data_to_html(lecture));
-        }
-    }
+function initTimetable() {
+    const lecturesInDay = getDividedTimetable();
 
-    for(const i in time) {
-        const html = `<div class="timetable-heading timetable-period-pc centering" style="grid-column: 1; grid-row: ${2 + parseInt(i)}">
-            <div class="timetable-element-wrapper">
-                <p>${time[i]}</p>
+    setPageTitle(page_title);
+    setPageTheme(color_theme);
+
+    const tableElement = document.getElementById('timetable');
+
+    const html = `
+        ${day_of_weeks.map((e, i) => (`
+            <!-- day of weeks --->
+            <div 
+                class="timetable-heading centering" 
+                style="grid-column: ${2 + i}; grid-row: 1"
+            >
+                <div class="timetable-element-wrapper">
+                    <p>${e}</p>
+                </div>
             </div>
-        </div>`;
-        table.insertAdjacentHTML('beforeend', html);
-    }
+            
+            <!-- lecture data --->
+            ${lecturesInDay[i].map(lectureDataToHTML).join('')}
+        `)).join('')}
+        
+        <!-- time notation --->
+        ${time.map((e, i) => (`
+            <div 
+                class="timetable-heading timetable-period-pc centering" 
+                style="grid-column: 1; grid-row: ${2 + i}"
+            >
+                <div class="timetable-element-wrapper">
+                    <p>${e}</p>
+                </div>
+            </div>
+        `)).join('')}
+    `;
+    tableElement.insertAdjacentHTML('beforeend', html);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    init_timetable();
+    initTimetable();
 });
