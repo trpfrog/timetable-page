@@ -91,11 +91,45 @@ function lectureDataToHTML(lecture) {
     `;
 }
 
+function decomposeTimetable(timetable) {
+  return timetable.flatMap(lect => {
+    if (Array.isArray(lect.period)) {
+      if (!Array.isArray(lect.lect_length)) {
+        lect.lect_length = [lect.lect_length];
+      }
+      if (!Array.isArray(lect.day_of_week)) {
+        lect.day_of_week = [lect.day_of_week];
+      }
+      let ret = [];
+      for (let i = 0; i < lect.period.length; i++) {
+        ret.push({
+          ...lect,
+          day_of_week: lect.day_of_week[i % lect.day_of_week.length],
+          period: lect.period[i],
+          lect_length: lect.lect_length[i % lect.lect_length.length],
+        });
+      }
+      return ret;
+    } else {
+      return [lect];
+    }
+  });
+}
+
 function getDividedTimetable() {
-    const alignedTimetable = day_of_weeks.map(() => [])
-    timetable
+    const alignedTimetable = day_of_weeks.map(() => []);
+    const decomposedTimetable = decomposeTimetable(timetable);
+    console.log(decomposedTimetable);
+
+    for (const lect of decomposedTimetable) {
+      if (dayOfWeekToCSSColumn(lect.day_of_week) <= 1) {
+        console.log(`Invalid day of week: ${lect.day_of_week} (lecture: ${lect.name})`)
+      }
+    }
+    decomposedTimetable
+        .filter(lect => dayOfWeekToCSSColumn(lect.day_of_week) > 1)
         .map(lect => ({ i: dayOfWeekToCSSColumn(lect.day_of_week) - 2, lect }))
-        .map(({i, lect}) => alignedTimetable[i].push(lect))
+        .forEach(({i, lect}) => alignedTimetable[i].push(lect))
 
     for (let i in alignedTimetable) {
         alignedTimetable[i].sort((a, b) => a.period - b.period);
